@@ -1,0 +1,41 @@
+{
+    "fileName": "id_1700042494967_558_propertyChange",
+    "fileType": "change",
+    "changeType": "propertyChange",
+    "moduleName": "",
+    "reference": "zsd01a",
+    "packageName": "",
+    "content": {
+        "property": "fitContent",
+        "newValue": true
+    },
+    "selector": {
+        "id": "zsd01a::sap.suite.ui.generic.template.ListReport.view.ListReport::ZSD_C_BILLING_TO_MATDOC--page",
+        "idIsLocal": false,
+        "type": "sap.f.DynamicPage"
+    },
+    "layer": "CUSTOMER_BASE",
+    "texts": {},
+    "namespace": "apps/zsd01a/changes/",
+    "projectId": "",
+    "creation": 1700042494967,
+    "originalLanguage": "",
+    "support": {
+        "generator": "changeUtils: SAPFioriTools",
+        "service": "",
+        "user": "",
+        "sapui5Version": "1.114.9",
+        "sourceChangeFileName": "",
+        "compositeCommand": ""
+    },
+    "oDataInformation": {},
+    "dependentSelector": {},
+    "validAppVersions": {
+        "from": "0.0.1",
+        "to": "0.0.1",
+        "creation": "0.0.1"
+    },
+    "jsOnly": false,
+    "variantReference": "",
+    "appDescriptorChange": false
+}

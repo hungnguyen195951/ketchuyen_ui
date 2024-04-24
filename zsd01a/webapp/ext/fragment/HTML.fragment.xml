@@ -1,0 +1,9 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core">
+	<Dialog 	id="idHtmlDialog"
+        	  	horizontalScrolling="false"
+        		verticalScrolling="false">
+		<c:HTML id="idHTMLContent"/>
+	</Dialog>  
+</c:FragmentDefinition>

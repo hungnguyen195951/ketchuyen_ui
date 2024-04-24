@@ -1,0 +1,36 @@
+<mvc:View controllerName="zfisoquyv2.controller.Main"
+    displayBlock="true"
+	xmlns="sap.ui.comp.smartfilterbar"
+	xmlns:f="sap.f"
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:st="sap.ui.comp.smarttable">
+    <m:Page id="page" title="{i18n>title}">
+        <m:content>
+            <f:DynamicPage id="dynamicPage" fitContent="true">
+                    <f:header>
+                        <f:DynamicPageHeader>
+                            <SmartFilterBar
+                                showGoOnFB="false"
+                                id="smartFilterBar"
+                                entitySet="ZFI_SOQUY_HEADERSet" initialise="onAfterVariantLoad">
+                                <controlConfiguration>
+                                    <ControlConfiguration key="CompanyCode" visibleInAdvancedArea="true" mandatory="mandatory" filterType="single" />
+                                    <ControlConfiguration key="GLAccount" visibleInAdvancedArea="true" mandatory="mandatory"/>
+                                </controlConfiguration>
+                                <layoutData>
+                                    <m:FlexItemData shrinkFactor="0"/>
+                                </layoutData>
+                            </SmartFilterBar>
+                            <m:HBox justifyContent="End" >
+                             <m:Button id="btnPrint" text="Print" press="onPress" class="sapUiSmallMarginEnd"></m:Button>
+                             <m:Button id="btnExport" text="Xuất Excel" press="onExport"></m:Button>
+                            </m:HBox>
+                           
+                        </f:DynamicPageHeader>
+                        
+                    </f:header>
+                </f:DynamicPage>        
+        </m:content>
+    </m:Page>
+</mvc:View>

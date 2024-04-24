@@ -1,0 +1,50 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="zichuky.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Chữ Ký">
+		<content>
+			<Table id="tbChuKy" items="{itemsData>/}" >   
+			<!-- items="{/Products}" -->
+			<headerToolbar>
+			<Toolbar>
+				<!-- <Button icon="sap-icon://add" text="Row" press="addRow"/>
+				<Button icon="sap-icon://display" text="Row" press="fetchRecords"/> -->
+			</Toolbar>
+		</headerToolbar>
+			<columns>
+				<Column >
+					<Text text ="ID" wrapping="false" />
+				</Column>
+				<Column>
+					<Text text="Chức vụ" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true"
+					>
+					<Text text="Họ tên" />
+				</Column>
+				<Column width="75px"/>
+				<Column width="75px"/>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Input value="{itemsData>Id}" editable='{itemsData>editableId}' id="id" change="onChangeData"/>
+						<Input value="{itemsData>Chucvu}" id="chucVu" change="onChangeData"/>
+						<Input value="{itemsData>Hoten}" id="hoTen" change="onChangeData" />
+						<Button text="Lưu" press="Add" type="Success" visible="{itemsData>btnLuu}"/>
+						<Button text="Xoá" press="Delete" type="Reject" id="btnDelete" visible="{itemsData>visible}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+			</Table>
+		</content>
+		<footer >
+					<OverflowToolbar  visible="{footerData>/footerHidden}">
+						<ToolbarSpacer/>
+						<Button type="Accept" text="Save" press="Save"/>
+						<Button type="Reject" text="Don't Save" press="DontSave"/>
+					</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

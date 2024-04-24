@@ -1,0 +1,50 @@
+<c:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:forms="sap.ui.layout.form"
+>
+    <m:Dialog
+     id="idHeaderTextInput"
+     title="Adjust form content"
+     horizontalScrolling="false"
+     verticalScrolling="false">
+        <m:content>
+            <ObjectPageLayout id="idObjectPageLayout">
+                <sections>
+                    <ObjectPageSection 
+                        id="idObjectPageSection"
+                        title="Section"
+                        titleUppercase="false">
+                        <ObjectPageSubSection id="idObjectPageSubSection"
+                            title="Content"
+                            titleUppercase="false">
+                            <blocks>
+                                <table:Table
+                                    rows="{NoiDung>/results}"
+                                    selectionMode="None"
+                                    ariaLabelledBy="title">
+                                    <table:columns>
+                                        <table:Column><m:Label text="Accounting Document"></m:Label><table:template><m:Text text="{NoiDung>AccountingDocument}"/></table:template></table:Column>
+                                        <table:Column><m:Label text="Kèm theo"></m:Label><table:template><m:Input value="{NoiDung>Reference}"/></table:template></table:Column>
+                                        <table:Column><m:Label text="Người nhận tiền"></m:Label><table:template><m:Input value="{NoiDung>NguoiNhanTien}"/></table:template></table:Column>
+                                        <table:Column><m:Label text="Địa chỉ"></m:Label><table:template><m:Input value="{NoiDung>DiaChi}"/></table:template></table:Column>
+                                    </table:columns>
+                                </table:Table>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </ObjectPageSection>
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+
+        <m:beginButton>
+        <m:Button id="downLoad" press="onPrint" text="In"/>
+        </m:beginButton>
+
+        <m:endButton>
+            <m:Button id="close" press="onCloseDialog" text="Huỷ"/>
+        </m:endButton>
+     </m:Dialog>
+</c:FragmentDefinition>

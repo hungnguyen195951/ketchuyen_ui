@@ -1,0 +1,54 @@
+<c:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:forms="sap.ui.layout.form"
+>
+    <m:Dialog
+     id="idHeaderTextInput"
+     title="Dialog"
+     horizontalScrolling="false"
+     verticalScrolling="false">
+        <m:content>
+            <ObjectPageLayout id="idObjectPageLayout">
+                <sections>
+                    <ObjectPageSection 
+                        id="idObjectPageSection"
+                        title="Section"
+                        titleUppercase="false">
+                        <ObjectPageSubSection id="idObjectPageSubSection"
+                            title="Item"
+                            titleUppercase="false">
+                            <blocks>
+                                <table:Table
+                                    rows="{NoiDung>/results}"
+                                    selectionMode="None"
+                                    ariaLabelledBy="title">
+                                    <table:columns>
+                                        <table:Column><m:Label text="Accounting Document"></m:Label><table:template><m:Text text="{NoiDung>AccountingDocument}"/></table:template></table:Column>
+                                        <table:Column><m:Label text="Nội dung"></m:Label><table:template><m:Input value="{NoiDung>noi_dung}"/></table:template></table:Column>
+                                        <table:Column><m:Label text="Người lập"></m:Label><table:template><m:Input value="{NoiDung>nguoi_lap}"/></table:template></table:Column>
+                                    </table:columns>
+                                </table:Table>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </ObjectPageSection>
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+
+        <m:beginButton>
+        <m:Button id="downLoad" press="Print" text="In"/>
+        </m:beginButton>
+
+        <m:endButton>
+            <m:Button
+                id="close"
+                press="onCloseDialog"
+                text="Huỷ"
+            />
+        </m:endButton>
+    </m:Dialog>
+
+</c:FragmentDefinition>

@@ -1,0 +1,225 @@
+<core:FragmentDefinition
+    xmlns:m="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <m:Dialog
+        id="idSimulateDialog"
+        title="{ReviewData>/title}"
+        stretch="true"
+        horizontalScrolling="false"
+        verticalScrolling="false">
+        <m:content>
+                <ObjectPageLayout id="idReviewDeNghi">
+                    <sections>
+                        <ObjectPageSection
+                            id="idObjectPageSection"
+                            titleUppercase="false">
+                            <subSections>
+                                <ObjectPageSubSection titleUppercase="false">
+                                    <blocks>
+                                        <m:VBox >
+                                            <m:FormattedText htmlText="{ReviewData>/CompanyNameUi}" />
+                                            <m:FormattedText htmlText="{ReviewData>/CompanyAddressUi}" class="sapUiTinyMarginTop" />
+                                            <m:FormattedText htmlText="{ReviewData>/AllPhoneNumberUi}" class="sapUiTinyMarginTop" />
+                                            <m:FormattedText htmlText="{ReviewData>/AllFaxNumberUi}" class="sapUiTinyMarginTop" />
+                                            <m:FormattedText htmlText="{ReviewData>/EmailAddressUi}" class="sapUiTinyMarginTop" />
+                                            <m:FormattedText htmlText="{ReviewData>/WebsiteUi}" class="sapUiTinyMarginTop" />                                                                                                      
+                                        </m:VBox>                             
+                                    </blocks>
+                                </ObjectPageSubSection>     
+                                <ObjectPageSubSection >
+                                    <m:VBox>
+                                        <f:Form id="formNguoiNhan"
+                                            editable="true">
+                                            <f:layout>
+                                                <f:ResponsiveGridLayout
+                                                    labelSpanXL="3"
+                                                    labelSpanL="3"
+                                                    labelSpanM="3"
+                                                    labelSpanS="12"
+                                                    adjustLabelSpan="false"
+                                                    emptySpanXL="4"
+                                                    emptySpanL="4"
+                                                    emptySpanM="4"
+                                                    emptySpanS="0"
+                                                    columnsXL="1"
+                                                    columnsL="1"
+                                                    columnsM="1"
+                                                    singleContainerFullSize="false" />
+                                            </f:layout>
+                                            <f:formContainers>
+                                                <f:FormContainer>
+                                                    <f:formElements>
+                                                        <f:FormElement label="Họ tên người thanh toán">
+                                                            <f:fields>
+                                                                <m:Input value='{ReviewData>/nguoithanhtoan}' id="inpTenNguoiDeNghi" />
+                                                            </f:fields>
+                                                        </f:FormElement>
+                                                        <f:FormElement label="Bộ phận (hoặc địa chỉ)">
+                                                            <f:fields>
+                                                                <m:Input value='{ReviewData>/donvicongtac}' id="inpDonViCongTac" />
+                                                            </f:fields>
+                                                        </f:FormElement>    
+                                                        <f:FormElement label="Số tiền tạm ứng ">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/sotientamung', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>                                                              
+                                                        <f:FormElement label="Số tiền tạm ứng chưa chi kỳ trước">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/SoTienChuaChiHet', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>      
+                                                        <f:FormElement label="Số tiền đã in ĐNTT">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/sumSoTienDaChi', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>        
+                                                        <f:FormElement label="Số tạm ứng chưa chi">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/soTamUngChiKhongHet', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>     
+                                                        <f:FormElement label="Chi quá số tạm ứng">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/soChiQuaSoTamUng', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>  
+                                                        <f:FormElement label="Nợ">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/sotienno', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement> 
+                                                        <f:FormElement label="Có">
+                                                            <f:fields>
+                                                                <m:Text text="{ parts: ['ReviewData>/sotienco', 'ReviewData>/TransactionCurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                            </f:fields>
+                                                        </f:FormElement>                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                    </f:formElements>
+                                                </f:FormContainer>
+                                            </f:formContainers>
+                                        </f:Form>
+                                    </m:VBox>                            
+                                </ObjectPageSubSection>                   
+                                
+                                <ObjectPageSubSection
+                                    id="idHDSection"
+                                    titleUppercase="false">
+                                    <blocks>
+                                        <m:VBox>
+                                            <m:FormattedText class="sapUiTinyMarginTop" htmlText="&lt;strong&gt;Hoá đơn&lt;/strong&gt;"  />
+                                            <table:Table
+                                                showNoData="true"
+                                                visibleRowCount="{ReviewData>/hoadonLength}"
+                                                rows="{ReviewData>/hoadon}"
+                                                selectionMode="None"
+                                                paste="onPaste"
+                                                ariaLabelledBy="title">
+                                                <table:columns>
+                                                    <table:Column width="50%" ><m:Label text="Chứng từ" /><table:template> <m:Text text="{ReviewData>accountingdocument}"/></table:template></table:Column>                                         
+                                                    <table:Column width="50%" ><m:Label text="Ngày" /><table:template> <m:Text text="{ReviewData>postingdate_ui}"/></table:template></table:Column>                                         
+                                                    <table:Column width="50%" >
+                                                        <m:Label text="Số tiền" />
+                                                        <table:template>
+                                                            <m:Input change='onChange' value="{ parts: ['ReviewData>/sotien', 'ReviewData>transactioncurrency'],
+                                                                        type: 'sap.ui.model.type.Currency',
+                                                                        formatOptions: {
+                                                                            preserveDecimals : false
+                                                                        }}"/>
+                                                        </table:template>
+                                                    </table:Column>     
+                                                </table:columns>
+                                            </table:Table>
+                                        </m:VBox>
+                                    </blocks>
+                                </ObjectPageSubSection>
+                                <ObjectPageSubSection
+                                    id="idCTCSection"
+
+                                    titleUppercase="false">
+                                    <blocks>
+                                        <m:VBox >
+                                        <m:HBox>
+                                            <m:FormattedText class="sapUiTinyMarginTop" htmlText="&lt;strong&gt;Số tiền tạm ứng kỳ này&lt;/strong&gt;"  />
+                                            <m:Text text="{ parts: ['ReviewData>/sotientamungchuachi', 'ReviewData>/currency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                        </m:HBox>
+                                        <table:Table
+                                            showNoData="true"
+                                            rows="{ReviewData>/chungtuchi}"
+                                            selectionMode="None"
+                                            paste="onPaste"
+                                            visibleRowCount="{ReviewData>/chungtuchiLength}"
+                                            class="sapUiTinyMarginTop"
+                                            ariaLabelledBy="title">
+                                            <table:columns>
+                                                <table:Column width="50%" ><m:Label text="Phiếu chi" /><table:template> <m:Text text="{ReviewData>accountingdocument}"/></table:template></table:Column>                                         
+                                                <table:Column width="50%" ><m:Label text="Ngày" /><table:template> <m:Text text="{ReviewData>postingdate_ui}"/></table:template></table:Column>                                         
+                                                <table:Column width="50%" >
+                                                    <m:Label text="Số tiền" />
+                                                    <table:template>
+                                                        <m:Text text="{ parts: ['ReviewData>sotien', 'ReviewData>transactioncurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                    </table:template>
+                                                </table:Column>                                                                                             
+                                            </table:columns>
+                                        </table:Table>
+                                        </m:VBox>
+                                    </blocks>
+                                </ObjectPageSubSection>
+                            </subSections>
+                        </ObjectPageSection>
+                    </sections>
+                </ObjectPageLayout>            
+        </m:content>
+        <m:beginButton>
+            <m:Button
+                id="btnPost"
+                press="onPostThanhToanTamUng"
+                text="Post"
+                type="Emphasized"/>
+        </m:beginButton>
+        <m:endButton>
+            <m:Button
+                id="btnClose"
+                press="onCloseReviewDialog"
+                text="Close"/>            
+        </m:endButton>
+    </m:Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,3 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core">
+    <BusyDialog id="idBusyDialogBBTraHang" title="Processing" text="Đang xử lý " close="onBusyDialogClosed"/>
+</c:FragmentDefinition>

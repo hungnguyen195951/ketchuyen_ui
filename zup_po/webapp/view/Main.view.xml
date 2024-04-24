@@ -1,0 +1,137 @@
+<mvc:View 
+    id="idMainView"
+    controllerName="zuppo.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:u="sap.ui.unified"
+    xmlns="sap.ui.table"
+    xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:f="sap.f">
+    <m:Page id="page" >
+        <f:DynamicPage
+            id="dynamicPageId"
+            toggleHeaderOnTitleClick="false">
+            <!-- DynamicPage Title -->
+            <!-- DynamicPage Header -->
+            <f:header>
+                <f:DynamicPageHeader  id="idDynamicPageHeader" pinnable="false">
+                        <m:VBox id="idVBox2">
+                            <m:Button id="btnDownload" press="downloadTemplate"  text="Download template"  class="sapUiSmallMarginBeginEnd"/>
+                            <m:Button id="btnButton" press="openUploadFragment" text="Choose file" class="sapUiSmallMarginBeginEnd"/>
+                            <m:HBox id="idHBox2">
+                                <m:Label design="Bold" text="Chức năng" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd"/>
+                                <m:VBox id="idVbox2">
+                                    <m:CheckBox id="chkTaoDonHang" text="Tạo đơn hàng" selected="taoDonHang" select="onchkTaoDonHangChanged" />
+                                    <m:CheckBox id="chkNhapKho" text="Nhập kho" selected="nhapKho" select="onchkNhapKhoChanged"/>
+                                    <m:CheckBox id="chkGhiNhanHD" text="Ghi nhận hóa đơn" selected="ghiNhanHD" select="onchkGhiNhanHDChanged"/>
+                                </m:VBox>
+                            </m:HBox>
+                            <m:Button id="btnPostData" press="postData" text="Post" icon="sap-icon://process" type="Emphasized" class="sapUiSmallMarginBeginEnd"/>
+                        </m:VBox>
+                </f:DynamicPageHeader>
+            </f:header>
+            <!-- DynamicPage Content -->
+            <f:content>
+            
+            <m:VBox id="idVBox">
+                    <core:Fragment fragmentName="zuppo.controller.fragment.Busy" type="XML" />
+                    <Table
+                        id="idMainTable"
+                        sort="onSort"
+                        columnMove="onColumnMove"
+                        ariaLabelledBy="title"
+                        rowMode="Interactive"
+                        enableSelectAll="true"
+                        sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
+                        rows="{/items}">
+                        <extension>
+                            <m:OverflowToolbar id="OverflowToolbar">
+                                <m:Title
+                                    id="title"
+                                    text="document"/>
+                                <m:ToolbarSeparator id="idToolbarSeparator"/>
+                                <vm:VariantManagement id="idVariant" for="idMainTable" />
+                                <m:ToolbarSpacer id="idToolbarSpacer"/>
+                                <m:Button icon="sap-icon://action-settings" press="openSetting"/>
+                            </m:OverflowToolbar>
+                        </extension>
+                        <dependents>
+                            <columnmenu:Menu id="menu">
+                                <columnmenu:items>
+                                    <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                                    <columnmenu:ActionItem icon="sap-icon://table-column" label="Columns" press="onColumnHeaderItemPress"/>
+                                </columnmenu:items>
+                            </columnmenu:Menu>
+                        </dependents>
+                        <noData>
+                            <m:IllustratedMessage
+                                enableVerticalResponsiveness="true"/>
+                        </noData>
+                        <columns>
+                           <Column id="companycode" headerMenu="menu">
+                            <m:Label text="Company code"/>
+                            <template>
+                                <m:Text text="{companycode}"/>
+                            </template>
+                           </Column>
+                           <Column name="companycode_txt" width='7rem' id="companycode_txt" headerMenu="menu"><m:Label text="Companycode Name"/><template><m:Text text="{companycode_txt}"/></template></Column>
+                           <Column name="purchasingorg" width='7rem' id="purchasingorg" headerMenu="menu"><m:Label text="Purchasing Org"/><template><m:Text text="{purchasingorg}"/></template></Column>
+                           <Column name="purchasingorg_txt" width='15rem' id="purchasingorg_txt" headerMenu="menu"><m:Label text="Purchasing Org Des"/><template><m:Text text="{purchasingorg_txt}"/></template></Column>
+                           <Column name="purchasinggroup"  width='7rem' id="purchasinggroup" headerMenu="menu"><m:Label text="Purchasing group"/><template><m:Text text="{purchasinggroup}"/></template></Column>
+                           <Column name="purchasinggroup_txt" width='15rem' id="purchasinggroup_txt" headerMenu="menu"><m:Label text="Purchasing group Des"/><template><m:Text text="{purchasinggroup_txt}"/></template></Column>
+                           <Column name="potype" id="potype" width='7rem' headerMenu="menu"><m:Label text="PO Type"/><template><m:Text text="{potype}"/></template></Column>
+                           <Column name="potype_txt" id="potype_txt" width='15rem' headerMenu="menu"><m:Label text="PO Type Des"/><template><m:Text text="{potype_txt}"/></template></Column>
+                           <Column name="ponumber_zeta" id="ponumber_zeta"  width='15rem' headerMenu="menu"><m:Label text="PO Number Zeta"/><template><m:Text text="{ponumber_zeta}"/></template></Column>
+                           <Column name="supplier" id="supplier"  width='15rem' headerMenu="menu"><m:Label text="Supplier"/><template><m:Text text="{supplier}"/></template></Column>
+                           <Column name="supplier_txt" id="supplier_txt"  width='25rem' headerMenu="menu"><m:Label text="Supplier Name"/><template><m:Text text="{supplier_txt}"/></template></Column>
+                           <!-- <Column name="accountassigmentcate" id="accountassigmentcate" visible="false" headerMenu="menu"><m:Label text="Acc Assignment Category"/><template><m:Text text="{accountassigmentcate}"/></template></Column> -->
+                           <!-- <Column name="itemcate" id="itemcate" visible="false" headerMenu="menu"><m:Label text="Item Category"/><template><m:Text text="{itemcate}"/></template></Column> -->
+                           <Column name="material" id="material" width='15rem' headerMenu="menu"><m:Label text="Material"/><template><m:Text text="{material}"/></template></Column>
+                           <Column name="material_txt" id="material_txt" width='35rem' headerMenu="menu"><m:Label text="Material Des"/><template><m:Text text="{material_txt}"/></template></Column>
+                           <Column name="materialgroup_txt" id="materialgroup_txt" width='15rem' headerMenu="menu"><m:Label text="Material Group"/><template><m:Text text="{materialgroup_txt}"/></template></Column>
+                           <Column name="poquantity" id="poquantity" width='15rem' headerMenu="menu"><m:Label text="PO Quantity"/><template><m:Text text="{poquantity}"/></template></Column>
+                           <Column name="orderunit" id="orderunit"  width='7rem' headerMenu="menu"><m:Label text="Order unit"/><template><m:Text text="{orderunit}"/></template></Column>
+                           <Column name="deliverydate" id="deliverydate" width='7rem' visible="false" headerMenu="menu"><m:Label text="Delivery date"/><template><m:Text text="{deliverydate}"/></template></Column>
+                           <Column name="netprice" id="netprice" width='15rem' headerMenu="menu"><m:Label text="Net price"/><template><m:Text text="{netprice}"/></template></Column>
+                           <Column name="per" id="per" width='7rem' headerMenu="menu"><m:Label text="Per"/><template><m:Text text="{per}"/></template></Column>
+                           <Column name="documentcurrency" id="documentcurrency" width='7rem' headerMenu="menu"><m:Label text="Currency"/><template><m:Text text="{documentcurrency}"/></template></Column>
+                           <Column name="orderpriceuom" id="orderpriceuom" width='15rem' headerMenu="menu"><m:Label text="Order price UOM"/><template><m:Text text="{orderpriceuom}"/></template></Column>
+                           <Column name="plant" id="plant" visible="false" width='7rem' headerMenu="menu"><m:Label text="Plant"/><template><m:Text text="{plant}"/></template></Column>
+                           <Column name="plant_txt" id="plant_txt" visible="false" width='15rem' headerMenu="menu"><m:Label text="Plant Des"/><template><m:Text text="{plant_txt}"/></template></Column>
+                           <Column name="storagelocation" id="storagelocation" width='7rem' visible="false" headerMenu="menu"><m:Label text="Storage Location"/><template><m:Text text="{storagelocation}"/></template></Column>
+                           <Column name="storagelocation_txt" id="storagelocation_txt" width='15rem' visible="false" headerMenu="menu"><m:Label text="Storage Location Des"/><template><m:Text text="{storagelocation_txt}"/></template></Column>
+                           <!-- <Column name="batch" id="batch" visible="false" headerMenu="menu"><m:Label text="Batch"/><template><m:Text text="{batch}"/></template></Column> -->
+                           <Column name="soloncc" id="soloncc" visible="false" headerMenu="menu"><m:Label text="Số lô NCC"/><template><m:Text text="{soloncc}"/></template></Column>
+                           <Column name="ngaysanxuat" id="ngaysanxuat" visible="false" headerMenu="menu"><m:Label text="Ngày sản xuất"/><template><m:Text text="{ngaysanxuat}"/></template></Column>
+                           <Column name="hansudung" id="hansudung" visible="false" headerMenu="menu"><m:Label text="Hạn sử dụng"/><template><m:Text text="{hansudung}"/></template></Column>
+                           <Column name="username" id="username" visible="false" headerMenu="menu"><m:Label text="Username"/><template><m:Text text="{username}"/></template></Column>
+                           <!-- <Column name="purchasinginforecord" id="purchasinginforecord" visible="false" headerMenu="menu"><m:Label text="Purchasing Info Record"/><template><m:Text text="{purchasinginforecord}"/></template></Column> -->
+                           <Column name="freeofcharge" id="freeofcharge" visible="false" headerMenu="menu"><m:Label text="Free of charge"/><template><m:Text text="{freeofcharge}"/></template></Column>
+                           <!-- <Column name="outlineagreement" id="outlineagreement" visible="false" headerMenu="menu"><m:Label text="Outline Agreement"/><template><m:Text text="{outlineagreement}"/></template></Column> -->
+                           <!-- <Column name="contractitem" id="contractitem" visible="false" headerMenu="menu"><m:Label text="Contract Item"/><template><m:Text text="{contractitem}"/></template></Column> -->
+                           <!-- <Column name="costcenter" id="costcenter" visible="false" headerMenu="menu"><m:Label text="Cost Center"/><template><m:Text text="{costcenter}"/></template></Column> -->
+                           <!-- <Column name="glaccount" id="glaccount" visible="false" headerMenu="menu"><m:Label text="GL Account"/><template><m:Text text="{glaccount}"/></template></Column> -->
+                           <Column name="reference" id="reference" visible="false" headerMenu="menu"><m:Label text="Reference"/><template><m:Text text="{reference}"/></template></Column>
+                           <Column name="taxcode" id="taxcode" visible="false" headerMenu="menu"><m:Label text="Tax Code"/><template><m:Text text="{taxcode}"/></template></Column>
+                           <Column name="ngayhoadon" id="ngayhoadon" visible="false" headerMenu="menu"><m:Label text="Ngày hoá đơn"/><template><m:Text text="{ngayhoadon}"/></template></Column>
+                           <Column name="paymentterm" id="paymentterm" visible="false" headerMenu="menu"><m:Label text="Payment term"/><template><m:Text text="{paymentterm}"/></template></Column>
+                           <Column name="calculatetax" id="calculatetax" visible="false" headerMenu="menu"><m:Label text="Calculate tax"/><template><m:Text text="{calculatetax}"/></template></Column>
+                           <Column name="taxamt" id="taxamt" visible="false" headerMenu="menu"><m:Label text="Tax amount"/><template><m:Text text="{taxamt}"/></template></Column>
+                           <Column name="taxbaseamt" id="taxbaseamt" visible="false" headerMenu="menu"><m:Label text="Tax base amount"/><template><m:Text text="{taxbaseamt}"/></template></Column>
+                           <Column name="thuenhapkhau" id="thuenhapkhau" visible="false" headerMenu="menu"><m:Label text="Thuế nhập khẩu"/><template><m:Text text="{thuenhapkhau}"/></template></Column>
+                           <Column name="vatuythac" id="vatuythac" visible="false" headerMenu="menu"><m:Label text="VAT uỷ thác"/><template><m:Text text="{vatuythac}"/></template></Column>
+                           <Column name="exchangerate" id="exchangerate" visible="false" headerMenu="menu"><m:Label text="Exchange rate"/><template><m:Text text="{exchangerate}"/></template></Column>
+                        </columns>
+                    </Table>                            
+            </m:VBox>
+
+            </f:content>
+        </f:DynamicPage>
+    </m:Page>
+</mvc:View>

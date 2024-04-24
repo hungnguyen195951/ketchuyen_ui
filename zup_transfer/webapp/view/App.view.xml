@@ -1,0 +1,16 @@
+<mvc:View 
+	controllerName="zuptransfer.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	xmlns:f = "sap.f">
+	<App id="app">
+	<f:FlexibleColumnLayout 
+	id="flexibleColumnLayout" 
+	backgroundDesign="Solid">
+		<f:beginColumnPages>
+			<mvc:XMLView id="beginView" viewName="zuptransfer.view.Main"/>
+		</f:beginColumnPages>
+	</f:FlexibleColumnLayout>
+    </App>
+</mvc:View>

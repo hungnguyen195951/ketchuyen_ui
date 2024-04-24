@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: ztesttransport
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: phyto_s4hc_dev
+          url: https://my407310-api.s4hana.cloud.sap
+        app:
+          name: ZTEST_TRANSFER
+          description: "[ABAP]_NganNM_14.12.2023_Test transport"
+          package: ZPK_TEST_TRANSPORT
+          transport: ZFCK900059
+        exclude:
+          - /test/

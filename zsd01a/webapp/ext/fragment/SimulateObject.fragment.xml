@@ -1,0 +1,114 @@
+<core:FragmentDefinition
+    xmlns:m="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:forms="sap.ui.layout.form">
+    <m:Dialog
+        id="idHtmlDialog"
+        horizontalScrolling="false"
+        verticalScrolling="false">
+        <m:content>
+            <ObjectPageLayout id="idSimulateObjectPageLayout">
+                <sections>
+                    <ObjectPageSection
+                        id="idObjectPageSection"
+                        titleUppercase="false"
+                        title="Simulation">
+         <!--                <subSections>
+                            <ObjectPageSubSection
+                                id="idHeaderSection"
+                                titleUppercase="false">
+                                <blocks>
+                                <forms:SimpleForm
+                                    id="headerInfo"
+                                    editable="false"
+                                    layout="ColumnLayout">
+                                    <m:Label text="Billing Document"/><m:Text id="txtBillingDocument" text="{SimulateData>/BillingDocument}" />
+                                    <m:Label text="Số hoá đơn gốc"/><m:Text id="txtSoHoaDonGoc" text="{SimulateData>/SoHoaDonGoc}" />
+                                    <m:Label text="Sale Org" /><m:Text id="txtSalesOrganizationName" text="{SimulateData>/SalesOrganizationName}" />
+                                </forms:SimpleForm>                                
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections> -->
+                        <subSections>
+                            <ObjectPageSubSection
+                                id="idItemSection"
+                                titleUppercase="false">
+                                <blocks>
+                                    <table:Table
+                                        rows="{SimulateData>/Items}"
+                                        
+                                        selectionMode="None"
+                                        ariaLabelledBy="title">
+                                        <table:rowSettingsTemplate>
+                                            <table:RowSettings highlight="{SimulateData>status}"/>
+                                        </table:rowSettingsTemplate>
+                                        <table:extension>
+                                                <m:Button 
+                                                    id="btnExport"
+                                                    press="onExport"
+                                                    text="Export Excel"
+                                                    class="sapUiTinyMarginEnd sapUiTinyMarginTopBottom"
+                                                    icon="sap-icon://excel-attachment"/>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column ><m:Label text="Billing Document" /><table:template> <m:Text text="{SimulateData>billingdocument}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Billing Document Item" /><table:template> <m:Text text="{SimulateData>billingdocumentitem}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Billing Document Date" /><table:template> <m:Text text="{SimulateData>billingdocumentdate}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Plant" /><table:template> <m:Text text="{SimulateData>plant}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Product" /><table:template> <m:Text text="{SimulateData>product}"/></table:template></table:Column>                                         
+                                            <table:Column >
+                                                <m:Label text="Inventory Price" />
+                                                <table:template>
+                                                    <m:Text text="{ parts: ['SimulateData>moveprice', 'SimulateData>movepricecurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                </table:template>
+                                            </table:Column>                                         
+                                            <table:Column ><m:Label text="Currency" /><table:template> <m:Text text="{SimulateData>movepricecurrency}"/></table:template></table:Column>                                         
+                                            <table:Column >
+                                                <m:Label text="Total Value" />
+                                                <table:template>
+                                                    <m:Text text="{ parts: ['SimulateData>totalvalue', 'SimulateData>movepricecurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false
+                                                                    }}"/>
+                                                </table:template>
+                                            </table:Column>                                         
+                                            <table:Column ><m:Label text="Goods Movement Type" /><table:template> <m:Text text="{SimulateData>goodmvt}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Batch" /><table:template> <m:Text text="{SimulateData>batch}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Batch NCC" /><table:template> <m:Text text="{SimulateData>batchncc}"/></table:template></table:Column>                                         
+                                            <table:Column ><m:Label text="Unit" /><table:template> <m:Text text="{SimulateData>baseunit}"/></table:template></table:Column>                                                           
+                                            <table:Column ><m:Label text="Quantity" /><table:template> <m:Text text="{SimulateData>quantity}"/></table:template></table:Column>                                                           
+                                            <table:Column ><m:Label text="Sales Org" /><table:template> <m:Text text="{SimulateData>salesorganization}"/></table:template></table:Column>                                                           
+                                            <table:Column ><m:Label text="Storage Loc" /><table:template> <m:Text text="{SimulateData>storagelocation}"/></table:template></table:Column>                                                           
+                                            <table:Column ><m:Label text="GL Account" /><table:template> <m:Text text="{SimulateData>glaccount}"/></table:template></table:Column>                                                           
+                                        </table:columns>
+                                    </table:Table>
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+        <m:beginButton>
+        <m:Button
+                id="btnPost"
+                press="onActionCreateMaterialDocument"
+                text="Create Material Document"
+            />
+        </m:beginButton>
+        <m:endButton>
+            <m:Button
+                id="btnClose"
+                press="onCloseDialog"
+                text="Close"
+            />
+        </m:endButton>
+    </m:Dialog>
+</core:FragmentDefinition>

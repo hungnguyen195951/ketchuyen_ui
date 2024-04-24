@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns:m="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:forms="sap.ui.layout.form">
+    <m:Dialog
+        id="idHtmlDialog"
+        horizontalScrolling="false"
+        verticalScrolling="false">
+        <m:content>
+            <ObjectPageLayout id="idSimulateObjectPageLayout">
+                <sections>
+                    <ObjectPageSection
+                        id="idObjectPageSection"
+                        titleUppercase="false"
+                        title="Đơn Vị Quy Đổi">
+                        <subSections>
+                            <ObjectPageSubSection
+                                id="idItemSection"
+                                titleUppercase="false">
+                                <blocks>
+                                    <table:Table
+                                        rows="{DonVi>/result}"
+                                        selectionMode="None"
+                                        ariaLabelledBy="title">
+                                        <table:rowSettingsTemplate>
+                                            <table:RowSettings highlight="{}"/>
+                                        </table:rowSettingsTemplate>
+                                        <table:columns>
+                                            <table:Column ><m:Label text="Mã Hàng" /><table:template> <m:Text text="{DonVi>Product}"/></table:template></table:Column> 
+                                            <table:Column >
+                                                <m:Label text="Đơn vị quy đổi" />
+                                                <table:template> 
+                                                    <m:ComboBox value="{DonVi>selected}" items="{DonVi>AlternativeUnit}">
+                                                        <core:Item text="{DonVi>unit}"/>
+                                                    </m:ComboBox>
+                                                </table:template>
+                                            </table:Column>                                                                                                 
+                                        </table:columns>
+                                    </table:Table>
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+        <m:beginButton>
+        <m:Button id="downLoad" press="Download" text="Tải ngay"/>
+        </m:beginButton>
+        
+        <m:endButton>
+            <m:Button
+                id="close"
+                press="onCloseDialog"
+                text="Huỷ"
+            />
+        </m:endButton>
+    </m:Dialog>
+</core:FragmentDefinition>

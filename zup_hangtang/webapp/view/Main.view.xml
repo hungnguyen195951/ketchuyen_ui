@@ -1,0 +1,105 @@
+<mvc:View 
+    id="idMainView"
+    controllerName="zuphangtang.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:u="sap.ui.unified"
+    xmlns="sap.ui.table"
+    xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:f="sap.f">
+    <m:Page id="page" >
+        <f:DynamicPage
+            id="dynamicPageId"
+            toggleHeaderOnTitleClick="false">
+            <!-- DynamicPage Title -->
+            <!-- DynamicPage Header -->
+            <f:header>
+                <f:DynamicPageHeader  id="idDynamicPageHeader" pinnable="false">
+                        <m:VBox id="idVBox2">
+                            <m:Button id="btnDownload" press="downloadTemplate" text="Download template" class="sapUiSmallMarginBeginEnd"/>
+                            <m:Button id="btnButton" press="openUploadFragment" text="Choose file" class="sapUiSmallMarginBeginEnd"/>
+                
+                            <m:HBox >
+                                <m:Button id="btnBatchDeterm" press="onBatchDetermination" icon="sap-icon://product" text="Batch Determination"  type="Critical" class="sapUiSmallMarginBeginEnd"/>
+                                <m:Button id="btnPostData" press="postData" text="Post" icon="sap-icon://process" type="Emphasized" class="sapUiSmallMarginBeginEnd"/>
+                            </m:HBox>                            
+                        </m:VBox>
+                </f:DynamicPageHeader>
+            </f:header>
+            <!-- DynamicPage Content -->
+            <f:content>
+            <m:VBox id="idVBox">
+                    <core:Fragment fragmentName="zuphangtang.controller.fragment.Busy" type="XML" />
+                    <Table
+                        id="idMainTable"
+                        enableSelectAll="true"
+                        sort="onSort"
+                        columnMove="onColumnMove"
+                        ariaLabelledBy="title"
+                        sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
+                        rows="{/items}">
+                        <extension>
+                            <m:OverflowToolbar id="OverflowToolbar">
+                                <m:Title
+                                    id="title"
+                                    text="document"/>
+                                <m:ToolbarSeparator id="idToolbarSeparator"/>
+                                <vm:VariantManagement id="idVariantTransfer" for="idMainTable" />
+                                <m:ToolbarSpacer id="idToolbarSpacer"/>
+                                <m:Button
+                                        icon="sap-icon://action-settings"
+                                        press="openSetting"/>
+                            </m:OverflowToolbar>
+                        </extension>
+                        <rowSettingsTemplate>
+                            <RowSettings highlight="{status}"/>
+                        </rowSettingsTemplate>                        
+                        <dependents>
+                            <columnmenu:Menu id="menu">
+                                <columnmenu:items>
+                                    <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                                    <columnmenu:ActionItem icon="sap-icon://table-column" label="Columns" press="onColumnHeaderItemPress"/>
+                                </columnmenu:items>
+                            </columnmenu:Menu>
+                        </dependents>
+                        <noData>
+                            <m:IllustratedMessage
+                                enableVerticalResponsiveness="true"/>
+                        </noData>
+                        <columns>
+                           <Column id="sohoadon" width="7rem" headerMenu="menu"><m:Label text="Số hoá đơn"/><template><m:Text text="{sohoadon}"/></template></Column>
+                           <Column id="sohoadongoc" width="7rem" headerMenu="menu"><m:Label text="Số hoá đơn gốc"/><template><m:Text text="{sohoadongoc}"/></template></Column>
+                           <Column id="movementtype" width="7rem" headerMenu="menu"><m:Label text="Movement Type"/><template><m:Text text="{movementtype}"/></template></Column>
+                           <Column id="postingdate" width="7rem" headerMenu="menu"><m:Label text="Posting Date"/><template><m:Text text="{postingdate}"/></template></Column>
+                           <Column id="headertext" width="12rem" headerMenu="menu"><m:Label text="Header text"/><template><m:Text text="{headertext}"/></template></Column>
+                           <Column id="material" width="10rem" headerMenu="menu"><m:Label text="Material"/><template><m:Text text="{material}"/></template></Column>
+                           <Column id="quantity" width="10rem" headerMenu="menu"><m:Label text="Quantity"/><template><m:Text text="{quantity}"/></template></Column>
+                           <Column id="unitofentry" width="7rem" headerMenu="menu"><m:Label text="Unit of entry"/><template><m:Text text="{unitofentry}"/></template></Column>
+                           <Column id="sloc" width="7rem" headerMenu="menu"><m:Label text="Sloc"/><template><m:Text text="{sloc}"/></template></Column>
+                           <Column id="batchncc" width="7rem" headerMenu="menu"><m:Label text="Batch Ncc"/><template><m:Text text="{batchncc}"/></template></Column>
+                           <Column id="batch" width="7rem" headerMenu="menu"><m:Label text="Batch"/><template><m:Text text="{batch}"/></template></Column>
+                           <Column id="plant" width="7rem" headerMenu="menu"><m:Label text="Plant"/><template><m:Text text="{plant}"/></template></Column>
+                           <Column id="moveprice" width="15rem" headerMenu="menu">
+                                <m:Label text="Inventory Price"/>
+                                <template>
+                                    <m:Text text="{ parts: ['moveprice', 'movepricecurrency'],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {
+                                                                        preserveDecimals : false    }}"/>
+                                </template>
+                            </Column>
+                           <Column id="movepricecurrency" width="15rem" headerMenu="menu"><m:Label text="Currency"/><template><m:Text text="{movepricecurrency}"/></template></Column>
+                        </columns>
+                    </Table>                            
+            </m:VBox>
+
+            </f:content>
+        </f:DynamicPage>
+    </m:Page>
+</mvc:View>

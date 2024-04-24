@@ -1,0 +1,224 @@
+{
+  "_version": "1.53.0",
+  "sap.app": {
+    "id": "zsdtaitroyte",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.12.1",
+      "toolsId": "3eebd1a3-a2d5-4159-bae7-deee2b0c1150"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZSD_UI_TAITROYTE_V2/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZSD_UI_TAITROYTE_V2_VAN",
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZSD_UI_TAITROYTE_V2_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSD_UI_TAITROYTE_V2_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZSD_UI_TAITROYTE_V2_VAN.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zsdtaitroyte-In Biên Bản": {
+          "semanticObject": "zsdtaitroyte",
+          "action": "In Biên Bản",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        },
+        "zsdtaitroyte-Print": {
+          "semanticObject": "zsdtaitroyte",
+          "action": "Print",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        },
+        "zsdtaitroyte-print": {
+          "semanticObject": "zsdtaitroyte",
+          "action": "print",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.114.9",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zsdtaitroyte.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+            "controllerName": "zsdtaitroyte.controller.Print",
+            "sap.ui.generic.app": {
+              "ZSD_I_TAITROYTE": {
+                "EntitySet": "ZSD_I_TAITROYTESet",
+                "Actions": {
+                  "actPrint": {
+                    "id": "actPrint",
+                    "text": "In Biên Bản",
+                    "press": "Print"
+                  }, "actPrint1": {
+                    "id": "actPrint1",
+                    "text": "Test",
+                    "press": "PrintTest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ui.generic.app": {
+    "_version": "1.3.0",
+    "settings": {
+      "forceGlobalRefresh": false,
+      "objectPageHeaderType": "Dynamic",
+      "considerAnalyticalParameters": true,
+      "showDraftToggle": false
+    },
+    "pages": {
+      "ListReport|ZSD_I_TAITROYTESet": {
+        "entitySet": "ZSD_I_TAITROYTESet",
+        "component": {
+          "name": "sap.suite.ui.generic.template.ListReport",
+          "list": true,
+          "settings": {
+            "condensedTableLayout": true,
+            "smartVariantManagement": true,
+            "enableTableFilterInPageVariant": true,
+            "filterSettings": {
+              "dateSettings": {
+                "useDateRange": true
+              }
+            }
+          }
+        },
+        "pages": {
+          "ObjectPage|ZSD_I_TAITROYTESet": {
+            "entitySet": "ZSD_I_TAITROYTESet",
+            "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+            "component": {
+              "name": "sap.suite.ui.generic.template.ObjectPage"
+            },
+            "pages": {
+              "ObjectPage|to_Item": {
+                "navigationProperty": "to_Item",
+                "entitySet": "ZSD_I_TAITROYTE_ITEM",
+                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                "component": {
+                  "name": "sap.suite.ui.generic.template.ObjectPage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

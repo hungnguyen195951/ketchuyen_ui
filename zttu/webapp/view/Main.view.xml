@@ -1,0 +1,73 @@
+<mvc:View 
+    controllerName="zttu.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    >
+    <Page id="page">
+        <f:DynamicPage  id="dynamicPageId"
+                        toggleHeaderOnTitleClick="false">
+            <f:header>
+                <f:DynamicPageHeader>
+                    <VBox id='headerVBox'>
+                        <smartFilterBar:SmartFilterBar  id="smartFilterBar" 
+                                                deltaVariantMode="true"
+                                                entitySet='ZFI_I_TTTUSet'
+                                                persistencyKey="smartFilterKey">
+                            <!-- <smartFilterBar:ControlConfiguration
+                                key="P_AtKeyDate" visibleInAdvancedArea="true"
+                                preventInitialDataFetchInValueHelpDialog="false">
+                            </smartFilterBar:ControlConfiguration> -->
+                        </smartFilterBar:SmartFilterBar>        
+                        <HBox justifyContent="End" >
+                            <Button text="Tạo chứng từ" press="onReviewThanhToanTamUng"></Button>
+                        </HBox>
+                    </VBox>
+                </f:DynamicPageHeader>
+            </f:header>
+            <f:content  >
+            <VBox   id="idMainVBox"
+                    backgroundDesign="Solid"
+                    class="sapUiTinyMarginBeginEnd">         
+                    <smartTable:SmartTable  visible="true" backgroundDesign="Solid"
+                                            entitySet="ZFI_I_TTTU_HDSet" 
+                                            tableType="ResponsiveTable" 
+                                            smartFilterId="smartFilterBar"
+                                            useVariantManagement="true" 
+                                            useTablePersonalisation="true" 
+                                            enableExport="false"
+                                            header="Hoá đơn"
+                                            enableAutoBinding="true" 
+                                            persistencyKey="hoaDonKey"
+                                            initiallyVisibleFields="CompanyCode,AccountingDocument,DocumentReferenceID,Account,AssignmentReference,PostingDate,DocumentDate,AccountingDocumentType,AmountInTransactionCurrency,PaidAmtInTransactionCurrency2,PaidAmtInTransactionCurrency,soTienDeNghi"
+                                            class="sapUiResponsiveContentPadding"
+                                            beforeRebindTable="onBeforeRebindHoaDon"
+                                            enableAutoColumnWidth="true" >
+                        <Table id="hoaDonTable" mode="MultiSelect"  ></Table> 
+                    </smartTable:SmartTable>                    
+                    <smartTable:SmartTable  backgroundDesign="Solid"
+                                            entitySet="ZFI_I_TTTU_CTCSet" 
+                                            tableType="ResponsiveTable" 
+                                            smartFilterId="smartFilterBar"
+                                            useVariantManagement="true" 
+                                            initiallyVisibleFields="CompanyCode,AccountingDocument,DocumentReferenceID,Account,AssignmentReference,PostingDate,DocumentDate,AccountingDocumentType,AmountInTransactionCurrency,PaidAmtInTransactionCurrency,Sotien,soTienDeNghi"
+                                            useTablePersonalisation="true"
+                                            enableExport="false" 
+                                            header="Chứng từ chi tạm ứng" 
+                                            enableAutoBinding="true"
+                                            persistencyKey="chungTuChiKey" 
+                                            beforeRebindTable="onBeforeRebindChungTuChi"
+                                            class="sapUiResponsiveContentPadding"
+                                            enableAutoColumnWidth="true" >               
+                        <Table id="chungTuChiTable"  mode="MultiSelect">
+                        </Table>                                   
+                    </smartTable:SmartTable>                     
+            </VBox>
+        </f:content>
+        </f:DynamicPage>
+    </Page>
+</mvc:View>
+
